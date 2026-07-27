@@ -10,7 +10,7 @@ const sendEmail = async (options) => {
   });
 
   const mailOptions = {
-    from: \`NIVARAN Jan Shikayat Portal <\${process.env.EMAIL_USER}>\`,
+    from: `NIVARAN Jan Shikayat Portal <${process.env.EMAIL_USER}>`,
     to: options.email,
     subject: options.subject,
     text: options.message,
