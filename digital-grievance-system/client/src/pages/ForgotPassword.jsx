@@ -45,7 +45,7 @@ const ForgotPassword = () => {
         </div>
 
         {status && (
-          <div className={\`flex items-start gap-2 p-3 text-xs border rounded-xl animate-in fade-in \${status.type === 'error' ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'}\`}>
+          <div className={`flex items-start gap-2 p-3 text-xs border rounded-xl animate-in fade-in ${status.type === 'error' ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'}`}>
             {status.type === 'error' ? <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" /> : <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />}
             <span>{status.message}</span>
           </div>
@@ -56,39 +56,18 @@ const ForgotPassword = () => {
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">Email Address</label>
             <div className="relative">
               <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@organization.com"
-                className="w-full text-xs glass-input rounded-xl pl-10 pr-3.5 py-3 text-slate-100 placeholder-slate-500 focus:outline-none"
-                required
-              />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@organization.com" className="w-full text-xs glass-input rounded-xl pl-10 pr-3.5 py-3 text-slate-100 placeholder-slate-500 focus:outline-none" required />
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3.5 px-4 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 active:scale-[0.99] rounded-xl shadow-lg shadow-indigo-600/25 disabled:opacity-50 transition-all flex items-center justify-center space-x-2"
-          >
-            {isSubmitting ? (
-              <span>Sending Email...</span>
-            ) : (
-              <>
-                <span>Send Reset Link</span>
-                <ArrowRight className="w-4 h-4" />
-              </>
-            )}
+          <button type="submit" disabled={isSubmitting} className="w-full py-3.5 px-4 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 active:scale-[0.99] rounded-xl shadow-lg shadow-indigo-600/25 disabled:opacity-50 transition-all flex items-center justify-center space-x-2">
+            {isSubmitting ? <span>Sending Email...</span> : <><span>Send Reset Link</span><ArrowRight className="w-4 h-4" /></>}
           </button>
         </form>
 
         <div className="text-center pt-2 border-t border-slate-800/80">
           <p className="text-xs text-slate-400">
-            Remembered your password?{' '}
-            <Link to="/login" className="font-semibold text-indigo-400 hover:text-indigo-300 hover:underline">
-              Back to Sign In
-            </Link>
+            Remembered your password? <Link to="/login" className="font-semibold text-indigo-400 hover:text-indigo-300 hover:underline">Back to Sign In</Link>
           </p>
         </div>
       </div>
