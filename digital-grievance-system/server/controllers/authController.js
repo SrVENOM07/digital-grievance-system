@@ -32,8 +32,10 @@ const signup = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 numeric digits' });
     }
 
-    if (!password || password.length < 6) {
-      return res.status(400).json({ success: false, message: 'Password must be at least 6 characters long' });
+    // NEW PASSWORD VALIDATION
+    const passRegex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{6,}$/;
+    if (!password || !passRegex.test(password)) {
+      return res.status(400).json({ success: false, message: 'Password must be at least 6 characters, with 1 uppercase and 1 special character (!@#$&*)' });
     }
 
     const assignedRole = role === 'ADMIN' ? 'ADMIN' : 'USER';
