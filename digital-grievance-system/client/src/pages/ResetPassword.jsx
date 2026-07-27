@@ -30,7 +30,7 @@ const ResetPassword = () => {
     setIsSubmitting(true);
 
     try {
-      await API.put(\`/auth/resetpassword/\${token}\`, { password });
+      await API.put(`/auth/resetpassword/${token}`, { password });
       setStatus({ type: 'success', message: 'Password updated successfully! Redirecting to login...' });
       setTimeout(() => {
         navigate('/login');
@@ -57,7 +57,7 @@ const ResetPassword = () => {
         </div>
 
         {status && (
-          <div className={\`flex items-start gap-2 p-3 text-xs border rounded-xl animate-in fade-in \${status.type === 'error' ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'}\`}>
+          <div className={`flex items-start gap-2 p-3 text-xs border rounded-xl animate-in fade-in ${status.type === 'error' ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'}`}>
             {status.type === 'error' ? <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" /> : <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />}
             <span>{status.message}</span>
           </div>
