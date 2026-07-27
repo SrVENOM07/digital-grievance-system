@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, ShieldCheck, User, Scale } from 'lucide-react';
+import { LogOut, ShieldCheck, User, Landmark } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -18,13 +18,13 @@ const Navbar = () => {
         {/* Brand Logo */}
         <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30">
-            <Scale className="w-5 h-5 text-white" />
+            <Landmark className="w-5 h-5 text-white" />
           </div>
           <div>
             <h1 className="text-lg font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">
-              Grievance<span className="text-indigo-400">Redressal</span>
+              NIVARAN
             </h1>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Portal</p>
+            <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Jan Shikayat Portal</p>
           </div>
         </div>
 
