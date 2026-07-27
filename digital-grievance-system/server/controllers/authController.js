@@ -84,10 +84,10 @@ const forgotPassword = async (req, res) => {
     await user.save();
 
     const frontendUrl = process.env.FRONTEND_URL || 'https://digital-grievance-system.vercel.app';
-    const resetUrl = \`\${frontendUrl}/reset-password/\${resetToken}\`;
+    const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
 
-    const message = \`You are receiving this email because you requested a password reset. Please make a PUT request to: \n\n \${resetUrl}\`;
-    const htmlMessage = \`<h3>Password Reset Request</h3><p>You requested a password reset. Click the link below to set a new password:</p><a href="\${resetUrl}" target="_blank">Reset Password</a><br><br><p>If you did not request this, please ignore this email.</p>\`;
+    const message = `You are receiving this email because you requested a password reset. Please make a PUT request to: \n\n ${resetUrl}`;
+    const htmlMessage = `<h3>Password Reset Request</h3><p>You requested a password reset. Click the link below to set a new password:</p><a href="${resetUrl}" target="_blank">Reset Password</a><br><br><p>If you did not request this, please ignore this email.</p>`;
 
     try {
       await sendEmail({ email: user.email, subject: 'Password reset token', message, html: htmlMessage });
