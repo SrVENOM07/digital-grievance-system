@@ -70,11 +70,11 @@ const Signup = () => {
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">Select Account Role</label>
             <div className="grid grid-cols-2 gap-2">
-              <button type="button" onClick={() => setRole('USER')} className={\`flex items-center justify-center gap-2 py-2 px-3 text-xs font-semibold rounded-xl border transition-all \${role === 'USER' ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 shadow-sm' : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'}\`}>
+              <button type="button" onClick={() => setRole('USER')} className={`flex items-center justify-center gap-2 py-2 px-3 text-xs font-semibold rounded-xl border transition-all ${role === 'USER' ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 shadow-sm' : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'}`}>
                 <User className="w-3.5 h-3.5" />
                 <span>Standard User</span>
               </button>
-              <button type="button" onClick={() => setRole('ADMIN')} className={\`flex items-center justify-center gap-2 py-2 px-3 text-xs font-semibold rounded-xl border transition-all \${role === 'ADMIN' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-sm' : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'}\`}>
+              <button type="button" onClick={() => setRole('ADMIN')} className={`flex items-center justify-center gap-2 py-2 px-3 text-xs font-semibold rounded-xl border transition-all ${role === 'ADMIN' ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-sm' : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700'}`}>
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Admin (Host)</span>
               </button>
@@ -101,7 +101,7 @@ const Signup = () => {
             <label className="block text-xs font-semibold text-slate-300 mb-1">Phone Number (10 Digits)</label>
             <div className="relative">
               <Phone className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input type="tel" maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value.replace(/\\D/g, ''))} placeholder="9876543210" className="w-full text-xs glass-input rounded-xl pl-10 pr-3.5 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none" required />
+              <input type="tel" maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))} placeholder="9876543210" className="w-full text-xs glass-input rounded-xl pl-10 pr-3.5 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none" required />
             </div>
           </div>
 
