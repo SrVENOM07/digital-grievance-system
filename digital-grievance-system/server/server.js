@@ -2,15 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
+const bcrypt = require('bcryptjs');
 const connectDB = require('./config/db');
+const User = require('./models/User');
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
-
-// Connect Database
-connectDB();
 
 // Middleware
 app.use(cors());
@@ -19,6 +18,44 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve uploaded images statically
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Auto Seed Function for production DBs
+const autoSeed = async () => {
+  try {
+    const count = await User.countDocuments();
+    if (count === 0) {
+      console.log('🌱 Empty database detected. Auto-seeding default accounts...');
+      const salt = await bcrypt.genSalt(10);
+      const adminPassword = await bcrypt.hash('admin123', salt);
+      const userPassword = await bcrypt.hash('user123', salt);
+
+      await User.create({
+        name: 'System Administrator',
+        email: 'admin@grievance.com',
+        phone: '9876543210',
+        password: adminPassword,
+        role: 'ADMIN'
+      });
+
+      await User.create({
+        name: 'Alex Johnson',
+        email: 'user@example.com',
+        phone: '9123456789',
+        password: userPassword,
+        role: 'USER'
+      });
+
+      console.log('✅ Auto-seed completed successfully!');
+    }
+  } catch (err) {
+    console.error('Auto-seed warning:', err.message);
+  }
+};
+
+// Connect Database & Run Auto Seed
+connectDB().then(() => {
+  autoSeed();
+});
 
 // API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
