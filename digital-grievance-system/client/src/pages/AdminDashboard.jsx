@@ -78,7 +78,7 @@ const AdminDashboard = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] text-gray-800 flex flex-col font-sans">
+    <div className="min-h-screen dashboard-bg text-gray-800 flex flex-col font-sans">
       <Navbar />
 
       {/* Breadcrumb */}

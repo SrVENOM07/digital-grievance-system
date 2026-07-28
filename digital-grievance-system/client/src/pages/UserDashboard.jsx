@@ -110,7 +110,7 @@ const UserDashboard = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#F5F7FA] flex flex-col font-sans text-gray-800">
+    <div className="min-h-screen flex flex-col dashboard-bg font-sans text-gray-800">
       <Navbar />
 
       {/* Breadcrumb */}
