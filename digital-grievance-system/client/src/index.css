@@ -2,22 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply text-gray-800 bg-[#F5F7FA] font-sans antialiased;
+  }
+}
+
 @layer utilities {
-  .glass-card {
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .gov-card {
+    @apply bg-white border border-gray-200 shadow-sm rounded-md;
   }
   
-  .glass-input {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
+  .gov-input {
+    @apply bg-white border border-gray-300 text-gray-900 rounded-sm focus:ring-1 focus:ring-[#0F4C81] focus:border-[#0F4C81] outline-none transition-colors;
   }
-  .glass-input:focus {
-    border-color: rgba(99, 102, 241, 0.8);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+  
+  .gov-button-primary {
+    @apply bg-[#0F4C81] text-white font-medium rounded-sm hover:bg-[#0a355c] transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-[#0F4C81];
+  }
+
+  .gov-button-secondary {
+    @apply bg-white text-[#0F4C81] font-medium border border-[#0F4C81] rounded-sm hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-[#0F4C81];
+  }
+  
+  .gov-header-strip {
+    @apply h-1.5 w-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808];
   }
 }
 
@@ -27,12 +36,12 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #c1c1c1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #a8a8a8;
 }

@@ -33,17 +33,17 @@ const AdminModal = ({ grievance, isOpen, onClose, onSave }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg glass-card rounded-2xl p-6 border border-slate-800 shadow-2xl space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-sm p-6 shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between border-b border-gray-200 pb-3 mb-4">
           <div>
-            <h3 className="text-base font-bold text-slate-100">Update Grievance Status</h3>
-            <p className="text-xs text-slate-400 font-mono mt-0.5">ID: {grievance._id}</p>
+            <h3 className="text-lg font-bold text-[#0F4C81]">Update Application Status</h3>
+            <p className="text-xs text-gray-500 font-mono mt-0.5">Reference ID: {grievance._id}</p>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-sm text-gray-400 hover:text-gray-800 hover:bg-gray-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -51,34 +51,34 @@ const AdminModal = ({ grievance, isOpen, onClose, onSave }) => {
 
         {/* Error Alert */}
         {error && (
-          <div className="flex items-center gap-2 p-3 text-xs bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl">
-            <AlertCircle className="w-4 h-4 shrink-0" />
+          <div className="flex items-center gap-2 p-3 text-sm bg-[#FDEDED] border border-[#F5C2C7] text-[#842029] rounded-sm mb-4">
+            <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {/* Grievance Summary */}
-          <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800/80 text-xs">
-            <p className="text-slate-200 font-medium mb-1">{grievance.title}</p>
-            <p className="text-slate-400 line-clamp-2">{grievance.description}</p>
+          <div className="bg-gray-50 p-4 rounded-sm border border-gray-200 text-sm">
+            <p className="text-gray-900 font-bold mb-1">{grievance.title}</p>
+            <p className="text-gray-600 line-clamp-2">{grievance.description}</p>
           </div>
 
           {/* Status Selection */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-2">
-              Status <span className="text-red-400">*</span>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Action / Status <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-3">
               {['Pending', 'In Progress', 'Resolved'].map((st) => (
                 <button
                   type="button"
                   key={st}
                   onClick={() => setStatus(st)}
-                  className={`py-2 px-3 text-xs font-medium rounded-xl border transition-all ${
+                  className={`py-2 px-3 text-sm font-medium rounded-sm border transition-colors ${
                     status === st
-                      ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 shadow-sm'
-                      : 'bg-slate-900/40 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300'
+                      ? 'bg-[#E3F2FD] border-[#0F4C81] text-[#0F4C81]'
+                      : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
                 >
                   {st}
@@ -89,38 +89,38 @@ const AdminModal = ({ grievance, isOpen, onClose, onSave }) => {
 
           {/* Admin Remarks */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              Admin Remarks / Action Notes
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+              Official Remarks / Resolution Notes
             </label>
             <textarea
               rows={3}
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
-              placeholder="Add official resolution notes or status updates for the user..."
-              className="w-full text-xs glass-input rounded-xl p-3 text-slate-100 placeholder-slate-500 focus:outline-none resize-none"
+              placeholder="Add official resolution notes or status updates for the citizen..."
+              className="w-full text-sm gov-input p-3 resize-none"
             />
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end space-x-3 pt-2">
+          <div className="flex items-center justify-end space-x-3 pt-3 border-t border-gray-200 mt-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 bg-slate-900/50 hover:bg-slate-800 rounded-xl border border-slate-800 transition-all"
+              className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 bg-white hover:bg-gray-100 rounded-sm border border-gray-300 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex items-center space-x-1.5 px-5 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-md shadow-indigo-600/20 disabled:opacity-50 transition-all"
+              className="flex items-center space-x-1.5 px-5 py-2 text-sm font-semibold text-white bg-[#0F4C81] hover:bg-[#0a355c] rounded-sm transition-colors disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span>Saving...</span>
               ) : (
                 <>
                   <CheckCircle className="w-4 h-4" />
-                  <span>Save Changes</span>
+                  <span>Update Record</span>
                 </>
               )}
             </button>

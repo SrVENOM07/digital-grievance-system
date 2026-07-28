@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://digital-grievance-system.onrender.com/api',
+  baseURL: '/api',
 });
 
 // Request interceptor to automatically attach JWT token

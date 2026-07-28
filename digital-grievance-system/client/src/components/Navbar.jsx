@@ -13,41 +13,41 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5 shadow-lg">
+    <header className="sticky top-0 z-40 bg-[#0F4C81] border-b border-[#0a355c] px-4 lg:px-8 py-3 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Logo */}
         <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30">
-            <Landmark className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 bg-white rounded-sm flex items-center justify-center shadow-sm">
+            <Landmark className="w-6 h-6 text-[#0F4C81]" />
           </div>
           <div>
-            <h1 className="text-lg font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">
+            <h1 className="text-lg font-bold text-white tracking-wide">
               NIVARAN
             </h1>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Jan Shikayat Portal</p>
+            <p className="text-[10px] text-gray-200 font-medium uppercase tracking-wider">Jan Shikayat Portal</p>
           </div>
         </div>
 
         {/* User Info & Actions */}
         {user && (
           <div className="flex items-center space-x-4">
-            <div className="hidden sm:flex items-center space-x-3 bg-slate-800/60 border border-slate-700/50 rounded-full px-3.5 py-1.5">
+            <div className="hidden sm:flex items-center space-x-3 bg-[#0a355c] border border-blue-800 rounded-sm px-3 py-1.5">
               {user.role === 'ADMIN' ? (
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <ShieldCheck className="w-4 h-4 text-[#FF9933]" />
               ) : (
-                <User className="w-4 h-4 text-indigo-400" />
+                <User className="w-4 h-4 text-white" />
               )}
               <div className="text-left">
-                <p className="text-xs font-semibold text-slate-200 leading-tight">{user.name}</p>
-                <span className={`text-[10px] uppercase font-bold tracking-wider ${user.role === 'ADMIN' ? 'text-emerald-400' : 'text-indigo-400'}`}>
-                  {user.role}
+                <p className="text-xs font-semibold text-white leading-tight">{user.name}</p>
+                <span className={`text-[10px] uppercase font-bold tracking-wider ${user.role === 'ADMIN' ? 'text-[#FF9933]' : 'text-gray-300'}`}>
+                  {user.role === 'ADMIN' ? 'Nodal Officer' : 'Citizen'}
                 </span>
               </div>
             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-red-400 bg-slate-800/40 hover:bg-red-500/10 border border-slate-700/60 hover:border-red-500/30 rounded-lg transition-all"
+              className="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-white hover:bg-[#D32F2F] border border-transparent hover:border-[#b71c1c] rounded-sm transition-colors"
               title="Logout"
             >
               <LogOut className="w-4 h-4" />

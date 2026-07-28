@@ -14,74 +14,84 @@ const GrievanceCard = ({ grievance, isAdmin = false, onUpdateStatus }) => {
   });
 
   return (
-    <div className="glass-card rounded-2xl p-5 hover:border-slate-700/80 transition-all duration-300 shadow-xl flex flex-col justify-between space-y-4">
-      <div>
-        {/* Header: Title & Status */}
-        <div className="flex items-start justify-between gap-3 mb-2">
-          <h3 className="text-base font-bold text-slate-100 leading-snug break-words">
+    <div className="gov-card flex flex-col justify-between hover:shadow-md transition-shadow">
+      
+      {/* Top Banner (Header) */}
+      <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-start justify-between gap-3">
+        <div>
+          <span className="text-[10px] font-mono text-gray-500 block mb-1">ID: {grievance._id.slice(-8).toUpperCase()}</span>
+          <h3 className="text-sm font-bold text-[#0F4C81] leading-snug break-words">
             {grievance.title}
           </h3>
+        </div>
+        <div className="shrink-0">
           <StatusBadge status={grievance.status} />
         </div>
+      </div>
 
+      <div className="p-4 flex-grow flex flex-col space-y-4">
         {/* Metadata: Category & Date */}
-        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 mb-3">
-          <span className="inline-flex items-center gap-1 bg-slate-800/80 px-2.5 py-1 rounded-md text-indigo-300 font-medium">
-            <Tag className="w-3.5 h-3.5" />
+        <div className="flex flex-wrap items-center gap-4 text-xs text-gray-600 border-b border-gray-100 pb-3">
+          <span className="inline-flex items-center gap-1 font-medium bg-gray-100 px-2 py-0.5 rounded-sm">
+            <Tag className="w-3.5 h-3.5 text-gray-500" />
             {grievance.category}
           </span>
-          <span className="inline-flex items-center gap-1 text-slate-400">
-            <Calendar className="w-3.5 h-3.5" />
+          <span className="inline-flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5 text-gray-500" />
             {formattedDate}
           </span>
         </div>
 
         {/* User Info (For Admin View) */}
         {isAdmin && grievance.userId && (
-          <div className="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs mb-3 space-y-1">
-            <div className="flex items-center gap-2 text-slate-300 font-medium">
-              <User className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="bg-[#F5F7FA] p-3 rounded-sm border border-gray-200 text-xs space-y-1.5 shadow-sm">
+            <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1 border-b border-gray-200 pb-1">Applicant Details</div>
+            <div className="flex items-center gap-2 text-gray-800 font-semibold">
+              <User className="w-3.5 h-3.5 text-[#0F4C81]" />
               <span>{grievance.userId.name || 'Anonymous'}</span>
             </div>
-            <div className="flex items-center gap-4 text-slate-400 text-[11px]">
+            <div className="flex items-center gap-4 text-gray-600 text-[11px]">
               <span className="flex items-center gap-1">
-                <Mail className="w-3 h-3 text-slate-500" /> {grievance.userId.email}
+                <Mail className="w-3 h-3 text-gray-400" /> {grievance.userId.email}
               </span>
               <span className="flex items-center gap-1">
-                <Phone className="w-3 h-3 text-slate-500" /> {grievance.userId.phone}
+                <Phone className="w-3 h-3 text-gray-400" /> {grievance.userId.phone}
               </span>
             </div>
           </div>
         )}
 
         {/* Description */}
-        <p className="text-xs text-slate-300 leading-relaxed bg-slate-900/40 p-3 rounded-xl border border-slate-800/50 mb-3 whitespace-pre-wrap">
-          {grievance.description}
-        </p>
+        <div>
+          <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1 block">Description</span>
+          <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+            {grievance.description}
+          </p>
+        </div>
 
         {/* Attached Image Preview */}
         {grievance.imageUrl && (
-          <div className="mb-3">
+          <div className="mt-2">
             <button
               onClick={() => setShowImageModal(true)}
-              className="inline-flex items-center gap-2 text-xs font-medium text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 px-3 py-1.5 rounded-lg border border-indigo-500/20 transition-all group"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F4C81] hover:text-[#0a355c] bg-[#E3F2FD] hover:bg-[#BBDEFB] px-3 py-1.5 rounded-sm transition-colors border border-[#90CAF9]"
             >
               <ImageIcon className="w-3.5 h-3.5" />
               View Attachment
-              <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              <ExternalLink className="w-3 h-3" />
             </button>
           </div>
         )}
 
         {/* Admin Remarks */}
         {grievance.adminRemarks && (
-          <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3 text-xs">
-            <div className="flex items-center gap-1.5 text-emerald-400 font-semibold mb-1">
+          <div className="bg-[#E8F5E9] border-l-4 border-[#138808] rounded-r-sm p-3 text-xs mt-auto">
+            <div className="flex items-center gap-1.5 text-[#138808] font-bold mb-1">
               <MessageSquare className="w-3.5 h-3.5" />
-              Admin Remarks:
+              Official Remarks:
             </div>
-            <p className="text-slate-300 leading-relaxed italic">
-              "{grievance.adminRemarks}"
+            <p className="text-gray-800 leading-relaxed">
+              {grievance.adminRemarks}
             </p>
           </div>
         )}
@@ -89,34 +99,34 @@ const GrievanceCard = ({ grievance, isAdmin = false, onUpdateStatus }) => {
 
       {/* Admin Action Button */}
       {isAdmin && onUpdateStatus && (
-        <div className="pt-3 border-t border-slate-800/60">
+        <div className="bg-gray-50 p-3 border-t border-gray-200">
           <button
             onClick={() => onUpdateStatus(grievance)}
-            className="w-full py-2 px-3 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 active:scale-[0.99] rounded-xl transition-all shadow-md shadow-indigo-600/20"
+            className="w-full py-2 px-3 text-xs font-bold text-[#0F4C81] bg-white border border-[#0F4C81] hover:bg-[#0F4C81] hover:text-white rounded-sm transition-colors"
           >
-            Update Status & Remarks
+            Update Action Status
           </button>
         </div>
       )}
 
       {/* Image Modal Lightbox */}
       {showImageModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative max-w-3xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl">
-            <div className="flex justify-between items-center mb-3">
-              <h4 className="text-sm font-semibold text-slate-200">Attached Evidence</h4>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative max-w-3xl w-full bg-white rounded-sm p-4 shadow-2xl border border-gray-200">
+            <div className="flex justify-between items-center mb-3 pb-2 border-b border-gray-200">
+              <h4 className="text-sm font-bold text-[#0F4C81]">Document Attachment</h4>
               <button
                 onClick={() => setShowImageModal(false)}
-                className="text-slate-400 hover:text-white text-xs px-2.5 py-1 bg-slate-800 rounded-lg hover:bg-slate-700"
+                className="text-gray-500 hover:text-gray-900 bg-gray-100 px-3 py-1 rounded-sm hover:bg-gray-200 transition-colors text-xs font-semibold"
               >
                 Close
               </button>
             </div>
-            <div className="max-h-[70vh] overflow-hidden flex items-center justify-center rounded-xl bg-black">
+            <div className="max-h-[70vh] overflow-hidden flex items-center justify-center rounded-sm bg-gray-50 border border-gray-200 p-2">
               <img
                 src={grievance.imageUrl}
                 alt="Grievance attachment"
-                className="max-h-[65vh] w-auto object-contain rounded-lg"
+                className="max-h-[65vh] w-auto object-contain"
               />
             </div>
           </div>
