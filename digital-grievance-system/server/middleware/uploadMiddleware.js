@@ -1,22 +1,9 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-const uploadsDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadsDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, 'grievance-' + uniqueSuffix + ext);
-  }
-});
+// Use memoryStorage instead of diskStorage so we can convert the image to Base64.
+// This prevents images from being deleted when the Render server restarts!
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedFileTypes = /jpeg|jpg|png|webp/;

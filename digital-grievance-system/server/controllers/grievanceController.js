@@ -21,7 +21,10 @@ const createGrievance = async (req, res) => {
 
     let imageUrl = '';
     if (req.file) {
-      imageUrl = `/uploads/${req.file.filename}`;
+      // Convert memory buffer to Base64 data URI for permanent storage in MongoDB
+      const base64Image = req.file.buffer.toString('base64');
+      const mimetype = req.file.mimetype;
+      imageUrl = `data:${mimetype};base64,${base64Image}`;
     }
 
     const grievance = await Grievance.create({
